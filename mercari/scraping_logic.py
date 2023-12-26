@@ -20,8 +20,8 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
             if loopCount > loop_limit:
                 break
             else:
-                # HACK: SALE時の値も取得する(SALE時は最初のspanが優先されるため金額が取得できない)
-                price = data.find_element(by=By.TAG_NAME, value="span").text.replace("\n", "").replace("SALE", "")
+                # price = data.find_element(by=By.TAG_NAME, value="span").text.replace("\n", "").replace("SALE", "")
+                price = data.find_element(by=By.CLASS_NAME, value="merPrice").text
                 priceInt = 0 if price == "" else int(price.replace("¥", "").replace(",", ""))
                 if ((priceInt > price_lower_limit) and (priceInt < price_upper_limit)):
                     url = data.find_element(by=By.TAG_NAME, value="a").get_attribute("href")
