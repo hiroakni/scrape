@@ -1,4 +1,4 @@
-import main as logic
+import logic.main as scraping
 
 LINE_NOTIFY_TOKEN = "53Ud7C6VSkTk2nbI3ooxQI02r2CvOzdmzl1Utjh85RK"
 SEARCH_URL = "https://jp.mercari.com/search?keyword=チョロQアドバンス&status=on_sale"
@@ -8,5 +8,4 @@ PRICE_LOWER_LIMIT = 299
 TIME_SLEEP = 3600
 OVERLAP_LIMIT = 10
 
-logic.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)
-
+scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)

@@ -1,9 +1,8 @@
 
 import time
-import line_notify_logic as line
+import logic.line_notify_logic as line
 from selenium.webdriver.common.by import By
 
-# HACK: ロジック部分のフォルダ構成考える
 def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit):
     try:
         parentDatas = browser.find_element(by=By.ID, value="item-grid")

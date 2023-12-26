@@ -1,12 +1,7 @@
 import time
 from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.chrome import service as fs
-# from selenium.webdriver.chrome.options import Options
-# from selenium.common.exceptions import WebDriverException
-# import chromedriver_binary
-import scraping_logic as scraping
-import line_notify_logic as line
+import logic.scraping_logic as scraping
+import logic.line_notify_logic as line
 
 # required
 import chromedriver_binary
@@ -21,9 +16,6 @@ def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, ti
             
             try:
                 browser.get(search_url)
-                # browser.get("https://jp.mercari.com/search?keyword=gameboy%20advance%20sp&status=on_sale")
-                # element = browser.find_element(by=By.XPATH, value="//*[@id='__next']/div/header/div/div/div[3]/mer-autocomplete/div[1]/form/div[1]/input")
-                # element.send_keys("gameboy advance sp\n")
 
             except Exception as e:
                 line.main("browser get exception", token)

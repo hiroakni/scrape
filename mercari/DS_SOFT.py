@@ -1,4 +1,4 @@
-import main as logic
+import logic.main as scraping
 
 LINE_NOTIFY_TOKEN = "PMGSX5jGBYhpqIfQI3GwcGoLuxo4xxWQLx8Wf6y5Y2C"
 SEARCH_URL = "https://jp.mercari.com/search?category_id=704&keyword=ds%E3%82%BD%E3%83%95%E3%83%88&status=on_sale"
@@ -10,5 +10,4 @@ TIME_SLEEP = 180
 
 OVERLAP_LIMIT = 100
 
-logic.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)
-
+scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)

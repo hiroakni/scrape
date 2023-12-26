@@ -1,4 +1,4 @@
-import main as logic
+import logic.main as scraping
 
 LINE_NOTIFY_TOKEN = "bVepr7jzQ0yW32BZQEDfqZr7d0hIDFTEd3O4wjeaZXo"
 SEARCH_URL = "https://jp.mercari.com/search?keyword=ゲームボーイミクロ%20本体&status=on_sale"
@@ -14,5 +14,4 @@ TIME_SLEEP = 300
 OVERLAP_LIMIT = 10
 
 
-logic.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)
-
+scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)
