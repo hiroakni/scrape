@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 
 def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit):
     try:
+        # 画面に表示されている商品一覧を親エレメントとして一括取得
         parentDatas = browser.find_element(by=By.ID, value="item-grid")
         datas = parentDatas.find_elements(by=By.TAG_NAME, value="li")
 
@@ -19,7 +20,7 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
             if loopCount > loop_limit:
                 break
             else:
-                # price = data.find_element(by=By.TAG_NAME, value="span").text.replace("\n", "").replace("SALE", "")
+                # 子エレメントから価格を取得してトリミングする
                 price = data.find_element(by=By.CLASS_NAME, value="merPrice").text
                 priceInt = 0 if price == "" else int(price.replace("¥", "").replace(",", ""))
                 if ((priceInt > price_lower_limit) and (priceInt < price_upper_limit)):
@@ -44,7 +45,7 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
             pass
 
     browser.quit()
-    print("final waiting...")
+    print("END")
     print(notify_goods_list)
     print(len(notify_goods_list))
     time.sleep(time_sleep)

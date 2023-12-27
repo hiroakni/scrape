@@ -23,7 +23,7 @@ def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, ti
                 break
 
             # 画面描画待ち
-            print("frist waiting...")
+            print("START")
             time.sleep(10)
             returned_notify_goods_list = scraping.main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit)
             notify_goods_list = returned_notify_goods_list

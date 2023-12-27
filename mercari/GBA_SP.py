@@ -1,13 +1,15 @@
 import logic.main as scraping
+import os
+from dotenv import load_dotenv
 
-LINE_NOTIFY_TOKEN = "K2wJ45DMRNkgT97IfW6pVyXMLyiwytQruXZsav9AIhU"
-SEARCH_URL = "https://jp.mercari.com/search?keyword=gameboy%20advance%20sp&status=on_sale"
-LOOP_LIMIT = 10
-PRICE_UPPER_LIMIT = 6501
-PRICE_LOWER_LIMIT = 2999
-# 5minutes
-TIME_SLEEP = 180
+load_dotenv()
 
-OVERLAP_LIMIT = 10
+LINE_NOTIFY_TOKEN = os.environ['GB_LINE_NOTIFY_TOKEN']
+SEARCH_URL = os.environ['GBA_SP_SEARCH_URL']
+LOOP_LIMIT = int(os.environ['GBA_SP_LOOP_LIMIT'])
+PRICE_UPPER_LIMIT = int(os.environ['GBA_SP_PRICE_UPPER_LIMIT'])
+PRICE_LOWER_LIMIT = int(os.environ['GBA_SP_PRICE_LOWER_LIMIT'])
+TIME_SLEEP = int(os.environ['GBA_SP_TIME_SLEEP'])
+OVERLAP_LIMIT = int(os.environ['GBA_SP_OVERLAP_LIMIT'])
 
 scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)

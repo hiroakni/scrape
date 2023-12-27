@@ -1,10 +1,14 @@
 import time
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def main(message, token):
     time.sleep(10)
     line_notify_token = token
-    line_notify_api = 'https://notify-api.line.me/api/notify'
+    line_notify_api = os.environ['LINE_NOTIFY_URL']
     payload = {'message': '\n' + message }
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     try:        
