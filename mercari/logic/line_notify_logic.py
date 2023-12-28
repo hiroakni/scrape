@@ -9,7 +9,7 @@ def main(message, token):
     time.sleep(10)
     line_notify_token = token
     line_notify_api = os.environ['LINE_NOTIFY_URL']
-    payload = {'message': '\n' + message }
+    payload = {'message': message }
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     try:        
         line_notify = requests.post(line_notify_api, data=payload, headers=headers)
