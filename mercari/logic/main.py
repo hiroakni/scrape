@@ -8,7 +8,7 @@ import chromedriver_binary
 
 def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, time_sleep, overlap_limit):
     try:
-        notify_goods_list = []
+        work_notify_goods_list = []
         while True:            
             option = webdriver.ChromeOptions()
             option.add_argument("--headless")  
@@ -29,10 +29,8 @@ def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, ti
                 break
 
             print("START")
-            returned_notify_goods_list = scraping.main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit)
-            notify_goods_list = returned_notify_goods_list
-            
+            returned_notify_goods_list = scraping.main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, work_notify_goods_list, overlap_limit)
+            work_notify_goods_list = returned_notify_goods_list
     except Exception as e:
         print(e)
         line.main("main loop exception", token)
-        pass
