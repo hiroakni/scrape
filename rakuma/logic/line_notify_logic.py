@@ -1,4 +1,3 @@
-import time
 import requests
 import os
 from dotenv import load_dotenv
@@ -6,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def main(message, token):
-    time.sleep(10)
     line_notify_token = token
     line_notify_api = os.environ['LINE_NOTIFY_URL']
     payload = {'message': message }
@@ -19,4 +17,3 @@ def main(message, token):
         print("line notify exception")
         print(e)
         pass
-    time.sleep(1)
