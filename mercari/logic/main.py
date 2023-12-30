@@ -1,7 +1,9 @@
+import sys
+sys.path.append('../')
 import time
 from selenium import webdriver
 import logic.scraping_logic as scraping
-import logic.line_notify_logic as line
+from common import line_notify as line
 from selenium.webdriver.chrome.options import Options
 # required
 import chromedriver_binary

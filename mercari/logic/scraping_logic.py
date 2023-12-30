@@ -1,6 +1,5 @@
-
 import time
-import logic.line_notify_logic as line
+from common import line_notify as line
 from selenium.webdriver.common.by import By
 
 def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit):
