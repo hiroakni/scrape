@@ -1,1 +1,1 @@
-python ./mercari/GBA_SP.py 
+python ./mercari/MRCR_GBA_SP.py 

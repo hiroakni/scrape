@@ -24,6 +24,7 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
 
                 if ((priceInt > price_lower_limit) and (priceInt < price_upper_limit)):
                     url = data.find_element(by=By.TAG_NAME, value="a").get_attribute("href")
+                    gooleChromeUrl = data.find_element(by=By.TAG_NAME, value="a").get_attribute("href").replace("https", "googlechrome")
                     text = data.find_element(by=By.TAG_NAME, value="img").get_attribute("alt").replace("のサムネイル", "")
                     # 同じ商品の通知が何度も来ないようにする（前回の結果を一時的に格納して比較する）
                     appendFlag = True
@@ -34,7 +35,7 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
                                 break
                     if appendFlag == True:
                         notify_goods_list.append({"price": price, "url": url, "text": text})
-                        line.main("\n" + text + "\n" + price +  '\n' + '\n' + url, token)
+                        line.main(url + "\n" + text + "\n" + price +  "\n" + "\n" + gooleChromeUrl, token)
                 loopCount = loopCount + 1
                 
         except Exception as e:

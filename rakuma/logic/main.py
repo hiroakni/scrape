@@ -6,15 +6,15 @@ from selenium.webdriver.chrome.options import Options
 # required
 import chromedriver_binary
 
-def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, time_sleep, overlap_limit):
+def main(token, search_url, loop_limit, time_sleep, overlap_limit):
     try:
         work_notify_goods_list = []
         while True:            
             option = webdriver.ChromeOptions()
-            option.add_argument("--headless")
-            option.add_argument("--blink-settings=imagesEnabled=false")
+            # option.add_argument("--headless")  
+            option.add_argument("--blink-settings=imagesEnabled=false")  
             option.add_argument("--incognito")
-            option.add_argument('--window-size=1024,768')
+            option.add_argument('--start-maximized')
             browser = webdriver.Chrome(options=option)
 
             print("started auto search")
@@ -30,7 +30,7 @@ def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, ti
                 break
 
             print("START")
-            returned_notify_goods_list = scraping.main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, work_notify_goods_list, overlap_limit)
+            returned_notify_goods_list = scraping.main(browser, loop_limit, time_sleep, token, work_notify_goods_list, overlap_limit)
             work_notify_goods_list = returned_notify_goods_list
     except Exception as e:
         print(e)
