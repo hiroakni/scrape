@@ -1,39 +1,47 @@
-import sys
-sys.path.append('../')
 import time
 from selenium import webdriver
-import logic.scraping_logic as scraping
+from .scraping_logic import main as scraping
+import sys
+sys.path.append('../')
 from common import line_notify as line
-from selenium.webdriver.chrome.options import Options
+import json
 # required
 import chromedriver_binary
 
-def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, time_sleep, overlap_limit):
+def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, time_sleep, overlap_limit, title, path):
     try:
-        work_notify_goods_list = []
-        while True:            
-            option = webdriver.ChromeOptions()
-            option.add_argument("--headless")
-            option.add_argument("--blink-settings=imagesEnabled=false")
-            option.add_argument("--incognito")
-            option.add_argument('--window-size=1024,768')
-            browser = webdriver.Chrome(options=option)
-
-            print("started auto search")
-            
+        targetPath = path
+        while True:
             try:
-                browser.get(search_url)
-                # 画面描画待ち
-                time.sleep(5)
+                with open(file=targetPath + title + ".json", mode="r") as file:
+                    work_notify_goods_list = json.load(file)
+                    option = webdriver.ChromeOptions()
+                    option.add_argument("--headless")
+                    option.add_argument("--blink-settings=imagesEnabled=false")
+                    option.add_argument("--incognito")
+                    option.add_argument('--window-size=1024,768')
+                    browser = webdriver.Chrome(options=option)
 
+                    print("started auto search")
+                    
+                    try:
+                        browser.get(search_url)
+                        # 画面描画待ち
+                        time.sleep(5)
+
+                    except Exception as e:
+                        line.main("browser get exception", token)
+                        print(e)
+                        break
+
+                    print("START")
+                    returned_notify_goods_list = scraping(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, work_notify_goods_list, overlap_limit, title)
+                with open(file=targetPath + title + ".json", mode="w") as file:
+                    file.write(json.dumps(returned_notify_goods_list))
             except Exception as e:
-                line.main("browser get exception", token)
                 print(e)
+                line.main("json file exception: ", token, title)
                 break
-
-            print("START")
-            returned_notify_goods_list = scraping.main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, work_notify_goods_list, overlap_limit)
-            work_notify_goods_list = returned_notify_goods_list
     except Exception as e:
         print(e)
         line.main("main loop exception", token)

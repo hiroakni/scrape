@@ -1,14 +1,16 @@
+import sys
+sys.path.append('../../../')
 import time
 from common import line_notify as line
 from selenium.webdriver.common.by import By
 
-def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit):
+def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, token, notify_goods_list, overlap_limit, title):
     try:
         parentDatas = browser.find_element(by=By.ID, value="item-grid")
         datas = parentDatas.find_elements(by=By.TAG_NAME, value="li")
 
     except Exception as e:
-        line.main("find parent data exception", token)
+        line.main("find parent data exception: ", token, title)
         print(e)
         pass
 
@@ -38,13 +40,12 @@ def main(browser, loop_limit, price_upper_limit, price_lower_limit, time_sleep, 
                 loopCount = loopCount + 1
                 
         except Exception as e:
-            line.main("element loop exception", token)
+            line.main("element loop exception: ", token, title)
             print(e)
             pass
 
     browser.quit()
     print("END")
-    print(notify_goods_list)
     print(len(notify_goods_list))
     time.sleep(time_sleep)
 

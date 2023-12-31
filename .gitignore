@@ -2,3 +2,5 @@
 __pycache__
 # 環境変数
 .env
+# 不要なファイル
+.DS_Store

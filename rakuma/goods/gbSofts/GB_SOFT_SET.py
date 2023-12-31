@@ -1,4 +1,6 @@
-import logic.main as scraping
+import sys
+sys.path.append('../../')
+from logic import main as scraping
 import os
 from dotenv import load_dotenv
 
@@ -12,4 +14,7 @@ TIME_SLEEP = int(os.environ['RKM_GB_SOFT_TIME_SLEEP'])
 OVERLAP_LIMIT = int(os.environ['RKM_GB_SOFT_OVERLAP_LIMIT'])
 SEARCH_URL = os.environ['RKM_GB_SOFT_SET_SEARCH_URL'] + "&min=" + PRICE_LOWER_LIMIT + "&max=" + PRICE_UPPER_LIMIT
 
-scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, TIME_SLEEP, OVERLAP_LIMIT)
+TITLE = "GB_SOFT_SET"
+filePath = os.path.dirname(__file__) + "/"
+
+scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, TIME_SLEEP, OVERLAP_LIMIT, TITLE, filePath)

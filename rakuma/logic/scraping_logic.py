@@ -1,21 +1,21 @@
-
+import sys
+sys.path.append('../../../')
 import time
 from common import line_notify as line
 from selenium.webdriver.common.by import By
 
-def main(browser, loop_limit, time_sleep, token, notify_goods_list, overlap_limit):
+def main(browser, loop_limit, time_sleep, token, notify_goods_list, overlap_limit, title):
     try:
         parentDatas = browser.find_element(by=By.CLASS_NAME, value="content")
         datas = parentDatas.find_elements(by=By.CLASS_NAME, value="item")
     except Exception as e:
-        line.main("find parent data exception", token)
+        line.main("find parent data exception: ", token, title)
         print(e)
-        pass
 
     loopCount = 0
     for data in datas:
         try:
-            if loopCount >= loop_limit:
+            if loopCount > loop_limit:
                 break
             else:
                 price = data.find_element(by=By.CLASS_NAME, value="item-box__item-price").text.replace("\n", "")
@@ -36,13 +36,12 @@ def main(browser, loop_limit, time_sleep, token, notify_goods_list, overlap_limi
             loopCount = loopCount + 1
                 
         except Exception as e:
-            line.main("element loop exception", token)
+            line.main("element loop exception: ", token, title)
             print(e)
             pass
 
     browser.quit()
     print("END")
-    print(notify_goods_list)
     print(len(notify_goods_list))
     time.sleep(time_sleep)
 

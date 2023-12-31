@@ -4,10 +4,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def main(message, token):
+def main(message, token, errorTarget=""):
     line_notify_token = token
     line_notify_api = os.environ['LINE_NOTIFY_URL']
-    payload = {'message': message }
+    payload = {'message': message + errorTarget}
     headers = {'Authorization': 'Bearer ' + line_notify_token}
     try:        
         line_notify = requests.post(line_notify_api, data=payload, headers=headers)
