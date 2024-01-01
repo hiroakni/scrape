@@ -15,6 +15,6 @@ TIME_SLEEP = int(os.environ['MRCR_GB_SOFT_TIME_SLEEP'])
 OVERLAP_LIMIT = int(os.environ['MRCR_GB_SOFT_OVERLAP_LIMIT'])
 
 TITLE = "GB_SOFT"
-filePath = os.path.dirname(__file__) + "/"
+filePath = os.path.dirname(__file__) + "\\"
 
 scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, PRICE_UPPER_LIMIT, PRICE_LOWER_LIMIT, TIME_SLEEP, OVERLAP_LIMIT, TITLE, filePath)

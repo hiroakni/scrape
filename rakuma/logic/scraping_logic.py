@@ -4,7 +4,7 @@ import time
 from common import line_notify as line
 from selenium.webdriver.common.by import By
 
-def main(browser, loop_limit, time_sleep, token, notify_goods_list, overlap_limit, title):
+def main(browser, loop_limit, token, notify_goods_list, overlap_limit, title):
     try:
         parentDatas = browser.find_element(by=By.CLASS_NAME, value="content")
         datas = parentDatas.find_elements(by=By.CLASS_NAME, value="item")
@@ -43,7 +43,6 @@ def main(browser, loop_limit, time_sleep, token, notify_goods_list, overlap_limi
     browser.quit()
     print("END")
     print(len(notify_goods_list))
-    time.sleep(time_sleep)
 
     if len(notify_goods_list) > overlap_limit:
         notify_goods_list = []

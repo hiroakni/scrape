@@ -15,6 +15,6 @@ OVERLAP_LIMIT = int(os.environ['RKM_GB_SOFT_OVERLAP_LIMIT'])
 SEARCH_URL = os.environ['RKM_GB_SOFT_SET_SEARCH_URL'] + "&min=" + PRICE_LOWER_LIMIT + "&max=" + PRICE_UPPER_LIMIT
 
 TITLE = "GB_SOFT_SET"
-filePath = os.path.dirname(__file__) + "/"
+filePath = os.path.dirname(__file__) + "\\"
 
 scraping.main(LINE_NOTIFY_TOKEN, SEARCH_URL, LOOP_LIMIT, TIME_SLEEP, OVERLAP_LIMIT, TITLE, filePath)

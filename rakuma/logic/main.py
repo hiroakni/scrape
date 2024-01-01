@@ -13,7 +13,8 @@ def main(token, search_url, loop_limit, time_sleep, overlap_limit, title, path):
         targetPath = path
         while True:
             try:
-                with open(file=targetPath + title + ".json", mode="r") as file:
+                with open(file=targetPath + title + ".json", mode="r", encoding="utf-8_sig") as file:
+                    time.sleep(0.1)
                     work_notify_goods_list = json.load(file)
                     option = webdriver.ChromeOptions()
                     # option.add_argument("--headless")
@@ -27,7 +28,7 @@ def main(token, search_url, loop_limit, time_sleep, overlap_limit, title, path):
                     try:
                         browser.get(search_url)
                         # 画面描画待ち
-                        time.sleep(5)
+                        time.sleep(10)
 
                     except Exception as e:
                         line.main("browser get exception: ", token, title)
@@ -35,9 +36,10 @@ def main(token, search_url, loop_limit, time_sleep, overlap_limit, title, path):
                         break
 
                     print("START")
-                    returned_notify_goods_list = scraping(browser, loop_limit, time_sleep, token, work_notify_goods_list, overlap_limit, title)
-                with open(file=targetPath + title + ".json", mode="w") as file:
+                    returned_notify_goods_list = scraping(browser, loop_limit, token, work_notify_goods_list, overlap_limit, title)
+                with open(file=targetPath + title + ".json", mode="w", encoding="utf-8_sig") as file:
                     file.write(json.dumps(returned_notify_goods_list))
+                time.sleep(time_sleep)
             except Exception as e:
                 print(e)
                 line.main("json file exception: ", token, title)
