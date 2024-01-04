@@ -20,7 +20,7 @@ def main(token, search_url, loop_limit, price_upper_limit, price_lower_limit, ti
                     option.add_argument("--headless")
                     option.add_argument("--blink-settings=imagesEnabled=false")
                     option.add_argument("--incognito")
-                    option.add_argument('--window-size=1024,768')
+                    option.add_argument('--start-maximized')
                     browser = webdriver.Chrome(options=option)
 
                     print("started auto search")

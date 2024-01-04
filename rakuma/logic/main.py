@@ -17,7 +17,7 @@ def main(token, search_url, loop_limit, time_sleep, overlap_limit, title, path):
                     time.sleep(0.1)
                     work_notify_goods_list = json.load(file)
                     option = webdriver.ChromeOptions()
-                    # option.add_argument("--headless")
+                    option.add_argument("--headless")
                     option.add_argument("--blink-settings=imagesEnabled=false")  
                     option.add_argument("--incognito")
                     option.add_argument('--start-maximized')
